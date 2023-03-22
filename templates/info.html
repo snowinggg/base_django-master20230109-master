@@ -1,0 +1,75 @@
+{% extends 'base_layout/base_site.html' %}
+{% block content %}
+{% load static %}
+
+<head>
+    <link type="text/css"  rel="stylesheet" href="{% static 'builds/table.css' %}">
+    <link type="text/css"  rel="stylesheet" href="{% static 'builds/tab.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+    $('#example').DataTable({"lengthMenu": [ 20, 50, 100 ]});
+});
+</script>
+</head>
+
+
+<input id="tab1" type="radio" name="tabs" checked>
+<label for="tab1">결과 보기</label>
+
+
+<input id="tab2" type="radio" name="tabs">
+<label for="tab2">table 요약 정보</label>
+
+
+
+<section id="content1">
+
+<table id="example" class="display" style="width:100%" >
+        <thead>
+ <tr>
+
+          {% for datase in col %}
+
+            <th><B>{{datase}}</B></th>
+
+            {% endfor %}
+
+        </tr>
+        </thead>
+        <tbody>
+{% for oneline in products_list %}
+        <tr>
+
+            {% for onedata in oneline %}
+            <td>{{onedata}}</td>
+
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </tfoot>
+    </table>
+
+</section>
+
+<section id="content2">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr>
+        <th>name</th>
+            <th>null num</th>
+            <th>data type</th>
+            {% for row in list2 %}
+        <tr>
+        {% for item in row %}
+            <td>{{ item }}</td>
+     {% endfor %}
+        </tr>
+        {% endfor %}
+            </tr>
+        </table>
+    </div>
+</section>
+{% endblock %}

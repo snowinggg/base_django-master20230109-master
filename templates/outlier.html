@@ -1,0 +1,48 @@
+{% extends 'base_layout/base_site.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link type="text/css"  rel="stylesheet" href="{% static 'builds/tab.css' %}">
+    <link rel="stylesheet" href="{% static 'builds/table.css' %}">
+</head>
+<input  id="tab1" type="radio" name="tabs" checked>
+<label for="tab1">원 핫 인코딩</label>
+
+<section id="content1">
+                    <div class="table-responsive" >
+        <table class="table table-bordered">
+            <tr>
+        <th>name</th>
+            <th>null num</th>
+            <th>data type</th>
+                <th>column 선택</th>
+            </tr>
+            <tr>
+            {% for row in list2 %}
+        <tr>{% for item in row %}
+            <td>{{ item }}</td>
+            {% endfor %}            <td><input id="selected7" type="checkbox" name="selected7" value="{{ check }}">{{ check }}</td></tr>
+        {% endfor %}
+
+        </table>
+    </div>
+
+    <form action="" method="post">
+              {% csrf_token %}
+        {% for check in col %}
+                {%  endfor %}
+        <button type="submit">이상치 확인</button>
+            <td>이상치 총합 : {{ sum2 }}</td>
+
+
+    </form>
+    <div class="container mt-4">
+        {{ chart|safe }}
+        {%  if chart %}
+{#        <button type="submit">이상치 행 삭제</button>#}
+            <a href="{% url 'outlier_results' %}"
+                   class="btn btn-sm btn-outline-secondary">이상치 행 삭제</a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

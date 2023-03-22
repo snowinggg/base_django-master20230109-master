@@ -1,0 +1,50 @@
+{% extends 'base_layout/base_site.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link type="text/css"  rel="stylesheet" href="{% static 'builds/tab.css' %}">
+    <link rel="stylesheet" href="{% static 'builds/table.css' %}">
+</head>
+
+
+<input  id="tab1" type="radio" name="tabs" checked>
+<label for="tab1">원 핫 인코딩</label>
+
+<section id="content1">
+<div class="container-fluid" style="padding-bottom: 15px;">
+    <div class="row justify-content-center container">
+        <div class="content">
+
+
+                <div class="table-responsive" >
+        <table class="table table-bordered">
+            <tr>
+        <th>name</th>
+            <th>null num</th>
+            <th>data type</th>
+                <th>column 선택</th>
+            </tr>
+            <tr>
+            {% for row in list2 %}
+        <tr>{% for item in row %}
+            <td>{{ item }}</td>
+            {% endfor %}            <td><input id="selected5" type="checkbox" name="selected5" value="{{ check }}">{{ check }}</td></tr>
+        {% endfor %}
+
+        </table>
+    </div>
+              <form action="" method="post">
+              {% csrf_token %}
+              <div style="width:200px; height:150px;float:left;">
+                  <h5><strong>데이터타입 object인 컬럼을 선택해주세요</strong></h5>
+                    <button type="submit">시각화</button>
+                  <li><a class="submenu" href="{% url 'show' %}">결과보기</a></li>
+              </div>
+              </form>
+
+        </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

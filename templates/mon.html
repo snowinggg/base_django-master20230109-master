@@ -1,0 +1,60 @@
+{% extends 'base_layout/base_site.html' %}
+{% block content %}
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'builds/drag.css' %}">
+    <link rel="stylesheet" href="{% static 'builds/table.css' %}">
+    <link type="text/css"  rel="stylesheet" href="{% static 'builds/tab2.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="{% static 'builds/tab.js' %}" defer></script>
+</head>
+
+<div class="wrapper">
+  <ul class="tabs-box">
+    <li class="tab active" data-tab="tab1">파일 불러오기</li>
+    <li class="tab" data-tab="tab2" >DB 불러오기</li>
+  </ul>
+</div>
+
+
+<div id="tab1"style="width: 2000px; height: 1200px;">
+    <div class="drag-area">
+        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <span>OR</span>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row content">
+                <div class ="col"> <br>
+                    <input type="file" name="document" id="document" required="required"><br>
+                </div>
+                <div class ="col"> <br>
+                    <button type="submit" class="btn-primary"> Upload</button> <br>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tr>
+                {% for datase in cols %}
+                <th>
+                    <B>{{datase}}</B>
+                </th>
+                {% endfor %}
+            </tr>
+            {% for oneline in products_list %}
+            <tr>
+                {% for onedata in oneline %}
+                <td>{{onedata}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<div id="tab2">
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'base_layout/base_site.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+    <link type="text/css"  rel="stylesheet" href="{% static 'builds/tab.css' %}">
+    <link rel="stylesheet" href="{% static 'builds/table.css' %}">
+</head>
+
+<input  id="tab1" type="radio" name="tabs" checked>
+<label for="tab1">MinMaxScaler 정규화</label>
+
+
+<input id="tab2" type="radio" name="tabs">
+<label for="tab2">StandardScaler 정규화</label>
+<section id="content1">
+                    <div class="table-responsive" >
+        <table class="table table-bordered">
+            <tr>
+        <th>name</th>
+            <th>null num</th>
+            <th>data type</th>
+                <th>column 선택</th>
+            </tr>
+            <tr>
+            {% for row in list2 %}
+        <tr>{% for item in row %}
+            <td>{{ item }}</td>
+            {% endfor %}            <td><input id="selected5" type="checkbox" name="selected5" value="{{ check }}">{{ check }}</td></tr>
+        {% endfor %}
+
+        </table>
+    </div>
+    <form action="" method="post">
+              {% csrf_token %}
+
+            <div style="width:200px; height:150px;float:left;">
+                  <h5><strong>MinMaxScaler 정규화</strong></h5>
+                {% for check in col %}
+                    <p><input id="selected6" type="checkbox" name="selected6" value="{{ check }}@#$%a">{{ check }}</p>
+                {%  endfor %}
+                  <button type="submit">컬럼 정규화</button>
+              </div>
+
+
+    </form>
+</section>
+<section id="content2">
+                <div class="table-responsive" >
+        <table class="table table-bordered">
+            <tr>
+        <th>name</th>
+            <th>null num</th>
+            <th>data type</th>
+                <th>column 선택</th>
+            </tr>
+            <tr>
+            {% for row in list2 %}
+        <tr>{% for item in row %}
+            <td>{{ item }}</td>
+            {% endfor %}            <td><input id="selected6" type="checkbox" name="selected6" value="{{ check }}">{{ check }}</td></tr>
+        {% endfor %}
+
+        </table>
+    </div>
+        <form action="" method="post">
+                        <div style="width:200px; height:150px;float:left;">
+                  <h5><strong>StandardScaler 정규화</strong></h5>
+                {% for check in col %}
+                   <p><input id="selected7" type="checkbox" name="selected6" value="{{ check }}@#$%w">{{ check }}</p>
+                {%  endfor %}
+                  <button type="submit">컬럼 정규화</button>
+              </div>
+
+    </form>
+</section>
+{% endblock %}

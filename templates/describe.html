@@ -1,0 +1,79 @@
+{% extends 'base_layout/base_site.html' %}
+{% block content %}
+
+<div class="table-responsive">
+    <details>
+    <summary>요약정보</summary>
+    <h2>describe() 메서드 </h2>
+ <table class="table table-bordered">
+
+      <thead>
+        <tr>
+
+          {% for datase in describe_cols %}
+
+            <th><B>{{datase}}</B></th>
+
+            {% endfor %}
+
+        </tr>
+      </thead>
+      <tbody>
+
+             {% for oneline in describe_list %}
+        <tr>
+
+            {% for onedata in oneline %}
+            <td>{{onedata}}</td>
+
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+
+      </tbody>
+    </table>
+    </details>
+
+  </div>
+<div class="table-responsive">
+<details>
+    <summary>상관관계 테이블</summary>
+    <h2>상관관계 테이블</h2>
+ <table class="table table-bordered">
+
+      <thead>
+        <tr>
+
+          {% for datase in corr_cols %}
+
+            <th><B>{{datase}}</B></th>
+
+            {% endfor %}
+
+        </tr>
+      </thead>
+      <tbody>
+
+             {% for oneline in corr_list %}
+        <tr>
+
+            {% for onedata in oneline %}
+            <td>{{onedata}}</td>
+
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+
+      </tbody>
+    </table>
+</details>
+</div>
+<details>
+    <summary>상관관계 시각화</summary>
+        <div class = "container mt-4">
+        {{ fff|safe }}
+        </div>
+    </details>
+{% endblock %}

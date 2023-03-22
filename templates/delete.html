@@ -1,0 +1,60 @@
+{% extends 'base_layout/base_site.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link type="text/css"  rel="stylesheet" href="{% static 'builds/tab.css' %}">
+    <link rel="stylesheet" href="{% static 'builds/table.css' %}">
+</head>
+
+<input  id="tab1" type="radio" name="tabs" checked>
+<label for="tab1">컬럼 삭제하기</label>
+
+
+<input id="tab2" type="radio" name="tabs">
+<label for="tab2">컬럼 median 채우기</label>
+
+<section id="content1">
+    <div class="table-responsive" >
+        <table class="table table-bordered">
+            <tr>
+        <th>name</th>
+            <th>null num</th>
+            <th>data type</th>
+                <th>삭제할 컬럼 선택</th>
+            </tr>
+            <tr>
+            {% for row in list2 %}
+        <tr>{% for item in row %}
+            <td>{{ item }}</td>
+            {% endfor %}            <td><input type="checkbox" value="{{ check }}@#$%d">{{ check }}</td></tr>
+        {% endfor %}
+
+        </table>
+    </div>
+
+
+
+</section>
+
+<section id="content2">
+    <div class="table-responsive" >
+        <table class="table table-bordered">
+            <tr>
+        <th>name</th>
+            <th>null num</th>
+            <th>data type</th>
+                <th>Median 채울 data</th>
+            </tr>
+            <tr>
+            {% for row in list2 %}
+        <tr>{% for item in row %}
+            <td>{{ item }}</td>
+            {% endfor %}            <td><input type="checkbox" value="{{ check }}@#$%d">{{ check }}</td></tr>
+        {% endfor %}
+
+        </table>
+    </div>
+
+</section>
+
+{% endblock %}

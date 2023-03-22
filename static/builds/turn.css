@@ -1,0 +1,12 @@
+.container { margin:100px auto; max-width:500px; }
+.container table { width:100%; }
+.container table th, table td { border:1px solid #ddd;}
+.container table th { background:green; color:#fff;}
+
+.container table thead { float:left; }
+.container table thead tr,
+.container table thead tr th { display:block; }
+
+.container table tbody { display:block; oveflow-x:hidden; white-space:nowrap; }
+.container table tbody tr { display:inline-block; }
+.container table tbody tr td { display:block;}
