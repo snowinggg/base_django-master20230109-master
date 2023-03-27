@@ -11,7 +11,8 @@ urlpatterns = [
     path('null', views.data_null, name='null'),
     path('delete', views.data2,name='delete'),
     path('show', views.show,name='show'),
-    path('plot', views.plot,name='plot'),
+    path('plot4', views.plot4, name='plot4'),
+    path('plot_index', views.plot_index, name='plot_index'),
     path('plot2',views.plot2,name='plot2'),
     path('plot3',views.plot3,name='plot3'),
     path('onehot',views.onehot_encoder,name='onehot_encoder'),
@@ -30,7 +31,6 @@ urlpatterns = [
     path('pie', views.pie, name="pie"),
     path('info', views.info, name="info"),
     path("index", views.index, name="index"),
-    path("type", views.type, name="type"),
     path("attribute", views.attribute, name="attribute"),
     path("attribute2", views.attribute2, name="attribute2"),
 ]

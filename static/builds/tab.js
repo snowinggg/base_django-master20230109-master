@@ -1,3 +1,19 @@
+$(document).ready(function(){
+
+	$('ul.tabs-box li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('ul.tabs li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	})
+
+})
+
+
+
 const tabsBox = document.querySelector(".tabs-box"),
 allTabs = tabsBox.querySelectorAll(".tab"),
 arrowIcons = document.querySelectorAll(".icon i");

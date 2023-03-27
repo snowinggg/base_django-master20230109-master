@@ -1,5 +1,6 @@
 from collections import Counter
 
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from matplotlib import pyplot as plt
 
@@ -267,8 +268,7 @@ def data2(request):
     context = {
         'b': b,
         'col': col,
-        'information': information, 'list2' : list2
-    }
+        'information': information, 'list2' : list2}
     print(col)
     # selected=[]
     # for i in col :
@@ -327,18 +327,29 @@ def onehot_encoder(request):
 
 
 # 시각화  VIEW 함수
-def plot(request):
-    global my_file, col, products_list, rows,data
-    colss = []
+def plot4(request):
+    global my_file, col, products_list, rows,data,type1
+    print(col)
+    type1 = my_file.dtypes.values.tolist()
+    type2 =["markers","line"]
+    print(type2)
+    print(type(type2))
     if request.method == "POST":
-        selected2 = request.POST.getlist('selected2')
+        print(request.POST.get)
+        selected2 = request.POST.getlist('fghgffgh[]')
+        print(request.POST.get)
         print(selected2)
-        fig = px.histogram(data, x=selected2[0], title="logtitud by value")
-        chart = fig.to_html()
-        context = {"chart": chart, "col": col}
-        return render(request, 'plot.html', context)
+        js = np.array(data[selected2].values.tolist()).transpose().tolist()
+        ind = data.index.tolist()
+        response_data = {'selected2':selected2,'ind':ind,'js': js}
+        # return render(request,"plot4.html",response_data)
+        return JsonResponse({'data': response_data})
+        # fig = px.histogram(data, x=selected2[0], title="logtitud by value")
+        # chart = fig.to_html()
+        # context = {"chart": chart, "col": col}
+        # return render(request, 'plot4.html', context)
 
-    else :
+    else:
         # fig = go.Figure()
         # for cccc in data.columns:
         #     if data[cccc].dtype != "object":
@@ -350,8 +361,16 @@ def plot(request):
         #
         # chart = fig.to_html()
         # context = {"chart": chart, "col": col}
-        context = {"col": col}
-        return render(request, 'plot.html',context)
+         context = {"col": col,'type1': type1,"type2": type2}
+         return render(request, 'plot4.html',context)
+
+def plot_index(request):
+    global my_file, col, products_list, rows, data, type1
+    print("erwrw")
+    print(type1)
+    context = {'col': col}
+
+    return render(request, 'plot4.html', context)
 def plot2(request):
     global my_file, col, products_list, rows, data
 
@@ -718,13 +737,6 @@ def attribute2(request):
 
 
 
-def type(request) :
-    global col, my_file, data, rows, columns,type1
-    type1 =my_file.dtypes.values.tolist()
-    print(type1)
-    context = {"col": col, "type1": type1}
-
-    return render(request, 'type.html', context)
 
 def type2(request):
     global col, my_file,data,rows, columns, type1

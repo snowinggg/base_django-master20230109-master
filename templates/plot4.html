@@ -1,0 +1,141 @@
+{% extends 'base_layout/base_site.html' %}
+{% block content %}
+<iframe url=""></iframe>
+<!--<head>-->
+<!--        <style>-->
+<!--    table, th, td {-->
+<!--        border: 1px solid black;-->
+<!--    }-->
+<!--    </style>-->
+<!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+<!--    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>-->
+<!--    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">-->
+<!--<link rel="icon" href="/favicon.ico" type="image/x-icon">-->
+<!--</head>-->
+
+<!--    <h5>Columns 1개를 선택해주세요</h5>-->
+<!--    <div id="container"></div>-->
+
+<!--    <table style="width:100%">-->
+<!--        <th>x변수</th>-->
+<!--        <th>y변수</th>-->
+<!--        <th>타입</th>-->
+<!--    <tr>-->
+<!--<div id="checkboxes">-->
+<!--        {% for check in col %}-->
+<!--            <td><p><input id="{{check}}" type="checkbox" name="selected2" value="{{ check }}"> {{ check }} </p></td>-->
+
+<!--        {%  endfor %}-->
+
+<!--    </div>-->
+<!--    </tr>-->
+<!--    <tr>-->
+<!--    </tr>-->
+
+<!--    <tr>-->
+<!--        {% for do2 in type1 %}-->
+<!--            <td>{{ do2 }}</td>-->
+<!--        {%  endfor %}-->
+<!--    </tr>-->
+
+<!--    </table>-->
+<!--    <div id="checkboxes2">-->
+<!--            {% for to in type2 %}-->
+<!--                <p>{{ to }}</p>-->
+<!--           <p><input id="{{to}}" type="radio" name="to" value="{{ to }}"> {{ to }} </p>-->
+<!--     {%  endfor %}-->
+<!--    </div>-->
+<!--    <script>-->
+<!--    var arr = new Array()-->
+<!--    var brr = new Array()-->
+<!--    {#$(document).ready(function() {#}-->
+<!--    {#    const checkboxes = document.querySelectorAll("#checkboxes input[type='checkbox']");#}-->
+<!--    {#    console.log(checkboxes)#}-->
+<!--    {#    var arr2 = [];#}-->
+<!--    {#    checkboxes.forEach(function (checkbox) {#}-->
+<!--    {#        arr2.push(checkbox.id);#}-->
+<!--    {#    });#}-->
+<!--    {#    console.log("Array of values: " + arr2);#}-->
+
+
+
+
+<!--        $("input[name=selected2]").click(function() {-->
+<!--            console.log($("input[name=selected2]"))-->
+<!--            console.log($("#checkboxes"))-->
+<!--            if($(this).is(":checked")){-->
+<!--                console.log(this.id)-->
+<!--                arr.push(this.id);-->
+<!--                console.log(this.id)-->
+<!--            }else {-->
+<!--                var index = arr.indexOf(this.id);-->
+<!--                console.log(arr.indexOf(this.id))-->
+<!--                if (index !== -1) {-->
+<!--                    arr.splice(index, 1);-->
+<!--              }-->
+
+<!--            }-->
+<!--                    console.log(arr);-->
+<!--        $("input[name=to]").click(function(){-->
+<!--            console.log($("input[name=to]"))-->
+<!--            console.log("dfsdfsdfsdf")-->
+<!--            console.log($("#checkboxes2"))-->
+<!--            if($(this).is(":checked")){-->
+<!--                 console.log($(this))-->
+<!--                brr.push(this.id);-->
+<!--                console.log(brr);-->
+<!--            }else {-->
+<!--                var index =brr.indexOf(this.id);-->
+<!--                if(index !==-1){-->
+<!--                    brr.splice(index,1);-->
+<!--                }-->
+<!--            }-->
+
+
+<!--                $.ajax({-->
+<!--                    url: '/plot',-->
+<!--                    type: 'POST',-->
+<!--                    data: {'fghgffgh': arr},-->
+<!--                    headers: {"X-CSRFToken": '{{csrf_token}}'},-->
+
+<!--                    success: function (data) {-->
+<!--                        {#console.log(data.data.js[0])#}-->
+<!--                        {#console.log(data.data.ind)#}-->
+<!--                        {#console.log("strdsdf")#}-->
+<!--                        var data2 = new Array();-->
+
+<!--                        for (let i = 0; i < arr.length; i++) {-->
+
+<!--                            {#console.log(i)#}-->
+<!--                            let trace1 = {-->
+
+<!--                                y: data.data.js[i],-->
+<!--                                mode: 'markers',-->
+<!--                                type: 'scatter',-->
+
+<!--                                name: data.data.selected2[i]-->
+<!--                            };-->
+
+<!--                            data2.push(trace1)-->
+<!--                            {#console.log(data)#}-->
+<!--                        }-->
+<!--                        {#console.log("dsfsdfs")#}-->
+<!--                        {#console.log(data)#}-->
+<!--                        var layout = {barmode: 'stack'};-->
+<!--                        Plotly.newPlot('dfdf', data2, layout);-->
+
+
+<!--                    }-->
+
+<!--                })-->
+<!--})-->
+<!--                        });-->
+
+
+<!--</script>-->
+
+
+<!--<p id="dfdf"></p>-->
+
+
+{% endblock %}
