@@ -33,4 +33,6 @@ urlpatterns = [
     path("index", views.index, name="index"),
     path("attribute", views.attribute, name="attribute"),
     path("attribute2", views.attribute2, name="attribute2"),
+    path("ml", views.ml, name="ml"),
+    path("dl", views.dl, name="dl"),
 ]

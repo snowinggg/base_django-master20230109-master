@@ -18,6 +18,8 @@ import itables.options as opt
 import plotly.graph_objects as go
 from django.core.paginator import Paginator
 
+import pymysql
+import pymysql.cursors
 from itables import show
 from itables.sample_dfs import get_population
 
@@ -58,6 +60,7 @@ def index(request):
 
 def mon(request):
     global attributeid, col, product_list, b, rows20,page,describe_col, describe_list
+
 
     if request.method == "POST":
         uploaded_file = request.FILES['document']
@@ -760,3 +763,11 @@ def type2(request):
 def change(request):
     context = {'list2' : list, 'col' : col, 'b' : b}
     return render(request, 'change.html',context)
+
+def ml(request):
+    context = {'list2' : list, 'col' : col, 'b' : b}
+    return render(request, 'ml.html')
+
+def dl(request):
+    context = {'list2' : list, 'col' : col, 'b' : b}
+    return render(request, 'dl.html')

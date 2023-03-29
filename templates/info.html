@@ -16,26 +16,20 @@
 </head>
 
 
+
+
 <input id="tab1" type="radio" name="tabs" checked>
-<label for="tab1">결과 보기</label>
+<label for="tab1">table 요약 정보</label>
 
 
 <input id="tab2" type="radio" name="tabs">
-<label for="tab2">table 요약 정보</label>
+<label for="tab2">type 변경</label>
 
 
 
 <section id="content1">
-<iframe
-  src="{% url 'attribute' %}"
-  title="iframe Example 1"  width="2000"
-  height="1500">
-</iframe>
-
-</section>
-
-<section id="content2">
     <div class="table-responsive">
+
         <table class="table table-bordered">
             <tr>
         <th>name</th>
@@ -51,5 +45,32 @@
             </tr>
         </table>
     </div>
+</section>
+
+
+<section id="content2">
+        <table class="table table-bordered">
+            <tr>
+        <th>name</th>
+            <th>null num</th>
+            <th>data type</th>
+                                <th>변경할 type 선택</th>
+                <th>column 선택</th>
+            </tr>
+            <tr>
+            {% for row in list2 %}
+        <tr>{% for item in row %}
+            <td>{{ item }}</td>
+            {% endfor %}            <td>    <input id="selected5" type="checkbox" name="selected5" value="{{ check }}">{{ check }}</td>
+        <td><select name="language" >
+    <option value="none"selected>=== 선택 ===</option>
+    <option value="korean" >int64</option>
+    <option value="english">float64</option>
+    <option value="chinese">object</option>
+  </select></td>
+        </tr>
+        {% endfor %}
+
+        </table>
 </section>
 {% endblock %}

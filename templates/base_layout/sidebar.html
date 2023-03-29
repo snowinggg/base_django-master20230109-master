@@ -31,6 +31,24 @@
             </ul>
         </li>
         <li>
+            <a href="#pageSubMenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu">
+                <i class="fa fa-database" aria-hidden="true"></i>전처리<span class="fa fa-chevron-down pull-right"></span></a>
+            <ul class="collapse list-unstyled sub_menu" id="pageSubMenu2">
+                <li>
+                <li><a class="submenu" href="{% url 'delete' %}">결측지 처리</a>
+                </li>
+                <li>
+                    <a class="submenu" href="{% url 'Normalization' %}">정규화</a>
+                </li>
+                <li>
+                    <a class="submenu" href="{% url 'outlier' %}">이상치 처리</a>
+                </li>
+                  <li>
+                    <a class="submenu" href="{% url 'onehot_encoder' %}">원 핫 인코딩</a>
+                </li>
+            </ul>
+        </li>
+        <li>
             <a href="#pageSubMenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu">
                 <i class="fa fa-database" aria-hidden="true"></i>데이터 품질검증<span class="fa fa-chevron-down pull-right"></span></a>
             <ul class="collapse list-unstyled sub_menu" id="pageSubMenu1">
@@ -39,25 +57,6 @@
                 </li>
                 <li>
                     <a class="submenu" href="">데이터 평가</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="#pageSubMenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu">
-                <i class="fa fa-database" aria-hidden="true"></i>전처리<span class="fa fa-chevron-down pull-right"></span></a>
-            <ul class="collapse list-unstyled sub_menu" id="pageSubMenu2">
-                <li>
-                <li><a class="submenu" href="{% url 'delete' %}">결측지 처리</a>
-                </li>
-                  <li>
-                    <a class="submenu" href="{% url 'onehot_encoder' %}">one-hot-encoding</a>
-                </li>
-                <li><a class="submenu" href="{% url 'Normalization' %}">Normalization</a>
-                </li>
-
-                <li><a class="submenu" href="{% url 'outlier' %}">이상치</a>
-                </li>
-                <li><a class="submenu" href="{% url 'change' %}">type 변경</a>
                 </li>
             </ul>
         </li>
@@ -99,7 +98,7 @@
                     <a class="submenu" href="{% url 'plot4' %}">Historgram</a>
                 </li>
                 {#                <li>#}
-                {#                    <a class="submenu" href="{% url "old_keyin_syst" %}">OLD 데이터입력</a>#}
+                {#                    <a class="submenu" href="{% url 'old_keyin_syst' %}">OLD 데이터입력</a>#}
                 {#                </li>#}
                  <li>
                     <a class="submenu" href="{% url 'plot2' %}">Scatter plots</a>
@@ -120,7 +119,7 @@
             <ul class="collapse list-unstyled sub_menu" id="pageSubMenu5">
 
                 <li>
-                    <a class="submenu" href="#">회귀</a>
+                    <a class="submenu" href="{% url 'ml' %}">회귀</a>
                 </li>
                 <li>
                     <a class="submenu2" href="#">분류</a>
@@ -138,7 +137,7 @@
             <ul class="collapse list-unstyled sub_menu" id="pageSubMenu6">
 
                 <li>
-                    <a class="submenu" href="#">인식</a>
+                    <a class="submenu" href="{% url 'dl' %}">인식</a>
                 </li>
                 <li>
                     <a class="submenu2" href="#">분류</a>
@@ -164,6 +163,18 @@
             </ul>
 
         </li>
+        <li>
+            <a href="#pageSubMenu8" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu">
+                <i class="fa fa-database" aria-hidden="true"></i>딥러닝 응용 분석 예<span
+                    class="fa fa-chevron-down pull-right"></span></a>
+            <ul class="collapse list-unstyled sub_menu" id="pageSubMenu8">
 
+                <li>
+                    <a class="submenu1" href="#">세라믹</a>
+                </li>
+
+            </ul>
+
+        </li>
     </ul>
 </div>
