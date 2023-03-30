@@ -628,7 +628,7 @@ def sub6(request):
     return render(request, 'sub6.html')
 
 def info(request):
-    global col, rows, columns, b, type1, list2
+    global col, rows, columns, b, type1, list2, list3
 
     rows = len(data.axes[0])
     columns = len(data.axes[1])
@@ -668,6 +668,10 @@ def info(request):
     for i in range(numm) :
         list1=[col[i],b[i],type1[i]]
         list2.append(list1)
+    list3 = []
+    for i in range(numm):
+        list1 = [col[i], b[i]]
+        list3.append(list1)
     print(list2)
 
 
@@ -765,9 +769,80 @@ def change(request):
     return render(request, 'change.html',context)
 
 def ml(request):
-    context = {'list2' : list, 'col' : col, 'b' : b}
-    return render(request, 'ml.html')
+    context = {
+        'b': b,
+        'col': col, 'list3' : list3}
+    return render(request, 'ml.html', context)
 
 def dl(request):
-    context = {'list2' : list, 'col' : col, 'b' : b}
-    return render(request, 'dl.html')
+    context = {
+        'b': b,
+        'col': col, 'list3' : list3}
+    return render(request, 'dl.html', context)
+
+def tab1(request):
+    return render(request, 'tab1.html')
+
+
+def tab2(request):
+    global col, rows, columns, b, type1, list2
+
+    rows = len(data.axes[0])
+    columns = len(data.axes[1])
+    information = "columns :" + str(columns) + "," + "rows :" + str(rows)
+    # columns별 null 값 출력
+    b = []
+    for i in col:
+        b.append(data[i].isnull().sum())
+    describe_col = my_file.describe().columns.tolist()
+    describe_list = my_file.describe().values.tolist()
+    describe_col.insert(0, '')
+    for i in range(len(describe_list)):
+        describe_list[i].insert(0, my_file.describe().index[i])
+    describe_list
+
+    # 상관관계
+
+    corr_matrix = my_file.corr(numeric_only=True)
+    # print(corr_matrix)
+    corr_matrix.index.name = "columns"
+    # print(corr_matrix)
+    corr_col = corr_matrix.columns.tolist()
+    corr_list = corr_matrix.values.tolist()
+    corr_col.insert(0, '')
+    for i in range(len(corr_list)):
+        corr_list[i].insert(0, corr_matrix.index[i])
+    fig = px.imshow(corr_matrix, text_auto=True, aspect="auto")
+    fff = fig.to_html()
+
+    type1 =my_file.dtypes.values.tolist()
+    print(type1)
+    type_c = ["int64", "float64", "bool", "object"]
+
+
+    numm = len(col)
+    list2=[]
+    for i in range(numm) :
+        list1=[col[i],b[i],type1[i]]
+        list2.append(list1)
+    print(list2)
+
+
+
+    if request.method == "POST":
+        choice = request.POST.getlist('choice')
+        print(choice)
+        choice2 = request.POST.getlist('choice2')
+        print(choice2)
+
+        # 컬럼과 데이터 타입 변경하기
+        for colss, dtype in zip(choice, choice2):
+            print(col)
+            print(dtype)
+            my_file[colss] = my_file[colss].astype(dtype)
+
+    context = {'col': col, 'products_list': products_list, 'describe_cols': describe_col,
+               'describe_list': describe_list, 'list': list, 'page': page, 'information' : information,'describe_list': describe_list, "corr_cols": corr_col,
+               "corr_list": corr_list,"fff":fff, "type1": type1,"type_c":type_c,'b': b,'list2':list2}
+
+    return render(request, 'tab2.html', context)

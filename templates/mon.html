@@ -4,54 +4,64 @@
 <head>
     <link rel="stylesheet" href="{% static 'builds/drag.css' %}">
     <link rel="stylesheet" href="{% static 'builds/table.css' %}">
-    <link type="text/css"  rel="stylesheet" href="{% static 'builds/tab.css' %}">
+    <link rel="stylesheet" href="{% static '/builds/navbar.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 </head>
-
-<input  id="tab1" type="radio" name="tabs" checked>
-<label for="tab1">파일 불러오기</label>
-
-
-<input id="tab2" type="radio" name="tabs">
-<label for="tab2">DB 불러오기</label>
-
-<section id="content1" style="width: 2000px; height: 1200px;">
-    <div class="drag-area">
-        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-        <span>OR</span>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="row content">
-                <div class ="col"> <br>
-                    <input type="file" name="document" id="document" required="required"><br>
-                </div>
-                <div class ="col"> <br>
-                    <button type="submit" class="btn-primary"> Upload</button> <br>
-                </div>
+<div class = "row">
+    <body style="overflow-x: hidden">
+    <nav>
+        <div class="logo">
+            불러오기
+        </div>
+        <div class="nav-items">
+            <li><a href="{% url 'mon' %}">파일 불러오기</a></li>
+            <li><a href="{% url 'tab1' %}">DB 불러오기</a></li>
+        </div>
+    </nav>
+    </body>
+    <script>
+      const menuBtn = document.querySelector(".menu-icon span");
+      const searchBtn = document.querySelector(".search-icon");
+      const cancelBtn = document.querySelector(".cancel-icon");
+      const items = document.querySelector(".nav-items");
+      const form = document.querySelector("form");
+      menuBtn.onclick = ()=>{
+        <items class="clas"></items>sList.add("active");
+        menuBtn.classList.add("hide");
+        searchBtn.classList.add("hide");
+        cancelBtn.classList.add("show");
+      }
+      cancelBtn.onclick = ()=>{
+        items.classList.remove("active");
+        menuBtn.classList.remove("hide");
+        searchBtn.classList.remove("hide");
+        cancelBtn.classList.remove("show");
+        form.classList.remove("active");
+        cancelBtn.style.color = "#ff3d00";
+      }
+      searchBtn.onclick = ()=>{
+        form.classList.add("active");
+        searchBtn.classList.add("hide");
+        cancelBtn.classList.add("show");
+      }
+</script>
+    <div class ="row">
+        <div class="content">
+            <div class="drag-area">
+                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                <span>OR</span>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row content"><br>
+                        <input type="file" name="document" id="document" required="required"><br>
+                        <button type="submit" class="btn-primary"> Upload</button> <br>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
+            <div class ="row">
+                <iframe src="{% url 'attribute' %}"  style="width : 2000px; height : 1200px"></iframe>
+            </div>
     </div>
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <tr>
-                {% for datase in cols %}
-                <th>
-                    <B>{{datase}}</B>
-                </th>
-                {% endfor %}
-            </tr>
-            {% for oneline in products_list %}
-            <tr>
-                {% for onedata in oneline %}
-                <td>{{onedata}}</td>
-                {% endfor %}
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-</section>
-
-<section id="tab">
-
-</section>
-
+</div>
 {% endblock %}

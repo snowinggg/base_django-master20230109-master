@@ -9,7 +9,7 @@ $(function () {
     });
 
     function setRightColHeight() {
-        $("#content .content-main").css("min-height", $(window).height() - 120);
+        $("#content .content-main").css("min-height", $(window).height() + 5);
     }
 
     function setSideBarMenu() {

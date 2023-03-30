@@ -1,115 +1,120 @@
+
 {% extends 'base_layout/base_site.html' %}
-{% load static %}
 {% block content %}
+{% load static %}
 <head>
-    <link type="text/css"  rel="stylesheet" href="{% static 'builds/tab.css' %}">
+    <link rel="stylesheet" href="{% static '/builds/navbar.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="{% static 'builds/drag.css' %}">
     <link rel="stylesheet" href="{% static 'builds/table.css' %}">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-    <script>
-        $(function() {
-            $("#slider").slider({
-                value:70,
-                min: 0,
-                max: 100,
-                step: 1,
-                slide: function( event, ui ) {
-                    $( "#amount3" ).val(   ui.value + "%" );
-                }
-            });
-            $( "#amount3" ).val($( "#slider" ).slider( "value" ) + "%"  );
-        });
-    </script>
-    <style>
-        .slider {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        width: 500px;
-        height: 60px;
-        padding: 30px;
-        padding-left: 40px;
-        background: #ffffff;
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        box-shadow: 0px 15px 40px #7E6D5766;
-        }
-        .slider label {
-        font-size: 24px;
-        font-weight: 400;
-        font-family: Open Sans;
-        padding-left: 10px;
-        color: black;
-        }
-        .slider input[type="range"] {
-        width: 420px;
-        height: 2px;
-        background: black;
-        border: none;
-        outline: none;
-        }
-    </style>
 </head>
+<nav>
+    <div class="logo">
+        딥러닝
+    </div>
+    <div class="nav-items">
+    </div>
+    <div class="search-icon">
+        <span class="fas fa-search"></span>
+    </div>
+    <div class="cancel-icon">
+        <span class="fas fa-times"></span>
+    </div>
+</nav>
+<div class="content">
+</div>
+<script>
+      const menuBtn = document.querySelector(".menu-icon span");
+      const searchBtn = document.querySelector(".search-icon");
+      const cancelBtn = document.querySelector(".cancel-icon");
+      const items = document.querySelector(".nav-items");
+      const form = document.querySelector("form");
+      menuBtn.onclick = ()=>{
+        items.classList.add("active");
+        menuBtn.classList.add("hide");
+        searchBtn.classList.add("hide");
+        cancelBtn.classList.add("show");
+      }
+      cancelBtn.onclick = ()=>{
+        items.classList.remove("active");
+        menuBtn.classList.remove("hide");
+        searchBtn.classList.remove("hide");
+        cancelBtn.classList.remove("show");
+        form.classList.remove("active");
+        cancelBtn.style.color = "#ff3d00";
+      }
+      searchBtn.onclick = ()=>{
+        form.classList.add("active");
+        searchBtn.classList.add("hide");
+        cancelBtn.classList.add("show");
+      }
+   </script>
 
-<input  id="tab1" type="radio" name="tabs" checked>
-<label for="tab1">컬럼 삭제하기</label>
 
+<div class="row" style="width : 50%">
+    <div class="col-lg-6">
+        <div class="table-responsive" >
+            <table class="table table-bordered" >
+                <tr>
+                    <th>name</th>
+                    <th>null num</th>
+                    <th>X변수</th>
+                    <th>Y변수</th>
+                    <th>x.shape</th>
+                    <th>y.shape</th>
 
-<input id="tab2" type="radio" name="tabs">
-<label for="tab2">컬럼 median 채우기</label>
-
-<section id="content1">
-    <div class="row" style="width : 100%">
-        <div class="col-lg-6">
-            <div class="table-responsive" >
-                <table class="table table-bordered" >
-                    <tr>
-                        <th>name</th>
-                        <th>null num</th>
-                        <th>X변수</th>
-                        <th>Y변수</th>
-                        <th>x.shape</th>
-                        <th>y.shape</th>
-
-                    </tr>
-                    <tr>
-                        {% for row in list2 %}
-                    <tr>{% for item in row %}
-                        <td>{{ item }}</td>
-                        {% endfor %}            <td><input type="checkbox" value="{{ check }}@#$%d">{{ check }}</td></tr>
-                    {% endfor %}
-                </table>
-            </div>
+                </tr>
+                <tr>
+                    {% for row in list3 %}
+                <tr>{% for item in row %}
+                    <td>{{ item }}</td>
+                    {% endfor %}    <td><input type="checkbox" value="{{ check }}@#$%d">{{ check }}</td>  <td><input type="checkbox" value="{{ check }}@#$%d">{{ check }}</td> <td></td><td></td>      </tr>
+                {% endfor %}
+            </table>
         </div>
-        <div class="col-lg-6"  align ="center">
-            <br>
-            trainset testset 비율 조정
-            <br>
-            <div class="slider">
-                <input type="range" min="0" max="100" value="70" oninput="rangeValue.innerText = this.value">
-                <p id="rangeValue">70%</p>
-            </div>
+    </div>
+    <div class="col-lg-3"  align ="center">
+    </div>
+    <div class="col-lg-2"  align ="center">
+        <br>
+        trainset testset 비율 조정
+        <br>
+        <div class="slider">
+            <input type="range" min="0" max="100" value="70" oninput="rangeValue.innerText = this.value">
+            <p id="rangeValue">70%</p>
         </div>
         <label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
-</label>
-<label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
-</label>
-<label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> 3
-</label>
+            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> RNN
+        </label>
+        <br>
+        <label class="radio-inline">
+            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> GRU
+        </label>
+        <br>
+        <label class="radio-inline">
+            <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> LSTM
+        </label>
+                <br>
+                <br>
+        <div class="form-group">
+            <label class="control-label" for="inputSuccess1">Num_Classes</label>
+            <input type="text" class="form-control" id="inputSuccess1" aria-describedby="helpBlock2">
+            <span id="helpBlock2" class="help-block"></span>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="inputWarning1">Epoch</label>
+            <input type="text" class="form-control" id="inputWarning1">
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="inputError1">Batch_Size</label>
+            <input type="text" class="form-control" id="inputError1">
+        </div>
+
+        </div>
     </div>
+</div>
 
 
-
-</section>
-
-<section id="content2">
-
-</section>
 
 {% endblock %}

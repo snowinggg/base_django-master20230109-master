@@ -35,4 +35,6 @@ urlpatterns = [
     path("attribute2", views.attribute2, name="attribute2"),
     path("ml", views.ml, name="ml"),
     path("dl", views.dl, name="dl"),
+    path("tab1", views.tab1, name="tab1"),
+    path("tab2", views.tab2, name="tab2")
 ]

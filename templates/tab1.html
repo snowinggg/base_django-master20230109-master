@@ -14,8 +14,8 @@
             불러오기
         </div>
         <div class="nav-items">
-            <li><a href="{% url 'info' %}">table 요약 정보</a></li>
-            <li><a href="{% url 'tab2' %}">type 변경</a></li>
+            <li><a href="{% url 'mon' %}">파일 불러오기</a></li>
+            <li><a href="{% url 'tab1' %}">DB 불러오기</a></li>
         </div>
         <div class="search-icon">
             <span class="fas fa-search"></span>
@@ -51,54 +51,5 @@
         cancelBtn.classList.add("show");
       }
 </script>
-    <div style = "padding : 100px">
-        <div class="table-responsive" style="width : 50%">
-
-        <table class="table table-bordered">
-            <tr>
-        <th>name</th>
-            <th>null num</th>
-            <th>data type</th>
-            {% for row in list2 %}
-        <tr>
-        {% for item in row %}
-            <td>{{ item }}</td>
-     {% endfor %}
-        </tr>
-        {% endfor %}
-            </tr>
-        </table>
-    </div>
- <table class="table table-bordered" style="width : 50%">
-
-      <thead>
-        <tr>
-
-          {% for datase in describe_cols %}
-
-            <th><B>{{datase}}</B></th>
-
-            {% endfor %}
-
-        </tr>
-      </thead>
-      <tbody>
-
-             {% for oneline in describe_list %}
-        <tr>
-
-            {% for onedata in oneline %}
-            <td>{{onedata}}</td>
-
-            {% endfor %}
-        </tr>
-        {% endfor %}
-
-
-      </tbody>
-    </table>
-
-
 </div>
-    </div>
 {% endblock %}
