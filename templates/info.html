@@ -11,7 +11,7 @@
     <body style="overflow-x: hidden">
     <nav>
         <div class="logo">
-            불러오기
+            정보 특성 보기
         </div>
         <div class="nav-items">
             <li><a href="{% url 'info' %}">table 요약 정보</a></li>
@@ -51,54 +51,57 @@
         cancelBtn.classList.add("show");
       }
 </script>
-    <div style = "padding : 100px">
+    <div style = "padding : 30px">
         <div class="table-responsive" style="width : 50%">
 
-        <table class="table table-bordered">
+            <table class="table table-bordered">
+                <tr>
+                    <th>name</th>
+                    <th>null num</th>
+                    <th>data type</th>
+                    {% for row in list2 %}
+                <tr>
+                    {% for item in row %}
+                    <td>{{ item }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                </tr>
+            </table>
+        </div>
+        <br>
+        <br>
+        <br>
+        <table class="table table-bordered" style="width : 50%">
+
+            <thead>
             <tr>
-        <th>name</th>
-            <th>null num</th>
-            <th>data type</th>
-            {% for row in list2 %}
-        <tr>
-        {% for item in row %}
-            <td>{{ item }}</td>
-     {% endfor %}
-        </tr>
-        {% endfor %}
+
+                {% for datase in describe_cols %}
+
+                <th><B>{{datase}}</B></th>
+
+                {% endfor %}
+
             </tr>
+            </thead>
+            <tbody>
+
+            {% for oneline in describe_list %}
+            <tr>
+
+                {% for onedata in oneline %}
+                <td>{{onedata}}</td>
+
+                {% endfor %}
+            </tr>
+            {% endfor %}
+
+
+            </tbody>
         </table>
+
+
     </div>
- <table class="table table-bordered" style="width : 50%">
-
-      <thead>
-        <tr>
-
-          {% for datase in describe_cols %}
-
-            <th><B>{{datase}}</B></th>
-
-            {% endfor %}
-
-        </tr>
-      </thead>
-      <tbody>
-
-             {% for oneline in describe_list %}
-        <tr>
-
-            {% for onedata in oneline %}
-            <td>{{onedata}}</td>
-
-            {% endfor %}
-        </tr>
-        {% endfor %}
-
-
-      </tbody>
-    </table>
-
-
 </div>
-    </div>
 {% endblock %}

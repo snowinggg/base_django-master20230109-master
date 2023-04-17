@@ -53,10 +53,10 @@
                 <i class="fa fa-database" aria-hidden="true"></i>데이터 품질검증<span class="fa fa-chevron-down pull-right"></span></a>
             <ul class="collapse list-unstyled sub_menu" id="pageSubMenu1">
                 <li>
-                    <a class="submenu" href="">데이터 속성검증</a>
+                    <a class="submenu" href="{% url 'quality'}">데이터 속성검증</a>
                 </li>
                 <li>
-                    <a class="submenu" href="">데이터 평가</a>
+                    <a class="submenu" href="{% url 'evaluation'}">데이터 평가</a>
                 </li>
             </ul>
         </li>
@@ -86,30 +86,6 @@
                 </li>
             </ul>
 
-        </li>
-
-
-        <li>
-            <a href="#pageSubMenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle menu">
-                <i class="fa fa-database" aria-hidden="true"></i>시각화(임시)<span
-                    class="fa fa-chevron-down pull-right"></span></a>
-            <ul class="collapse list-unstyled sub_menu" id="pageSubMenu4">
-                 <li>
-                    <a class="submenu" href="{% url 'plot4' %}">Historgram</a>
-                </li>
-                {#                <li>#}
-                {#                    <a class="submenu" href="{% url 'old_keyin_syst' %}">OLD 데이터입력</a>#}
-                {#                </li>#}
-                 <li>
-                    <a class="submenu" href="{% url 'plot2' %}">Scatter plots</a>
-                </li>
-                 <li>
-                    <a class="submenu" href="{% url 'plot3' %}">Boxplot</a>
-                </li>
-                <li>
-                    <a class="submenu" href="{% url 'dbscan' %}">DBSCAN</a>
-                </li>
-            </ul>
         </li>
 
                 <li>

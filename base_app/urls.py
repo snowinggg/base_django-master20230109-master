@@ -36,5 +36,8 @@ urlpatterns = [
     path("ml", views.ml, name="ml"),
     path("dl", views.dl, name="dl"),
     path("tab1", views.tab1, name="tab1"),
-    path("tab2", views.tab2, name="tab2")
+    path("tab2", views.tab2, name="tab2"),
+    path("median", views.median, name="median"),
+    path("quality", views.quality, name="quality"),
+    path("evaluation", views.evaluation, name="evaluation")
 ]

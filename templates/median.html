@@ -1,0 +1,49 @@
+{% extends 'base_layout/base_site.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static '/builds/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'builds/table.css' %}">
+</head>
+
+<nav>
+    <div class="logo">
+        딥러닝
+    </div>
+    <div class="nav-items">
+        <li><a href="{% url 'delete' %}">컬럼 삭제하기</a></li>
+        <li><a href="{% url 'median' %}">컬럼 median 채우기</a></li>
+    </div>
+    <div class="search-icon">
+        <span class="fas fa-search"></span>
+    </div>
+    <div class="cancel-icon">
+        <span class="fas fa-times"></span>
+    </div>
+</nav>
+
+
+
+
+
+
+<div class="table-responsive" style="width:50%">
+    <table class="table table-bordered">
+        <tr>
+            <th>name</th>
+            <th>null num</th>
+            <th>data type</th>
+            <th>Median 채울 data</th>
+        </tr>
+        <tr>
+            {% for row in list2 %}
+        <tr>{% for item in row %}
+            <td>{{ item }}</td>
+            {% endfor %}            <td><input type="checkbox" value="{{ check }}@#$%d">{{ check }}</td></tr>
+        {% endfor %}
+
+    </table>
+</div>
+    <button type="button" class="btn btn-primary">적용</button>
+    <button type="button" class="btn btn-primary" href="">확인</button>
+{% endblock %}

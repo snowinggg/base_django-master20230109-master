@@ -112,7 +112,6 @@ nav .search-icon{
     text-align: center;
     background: #14181f;
     display: inline-block;
-    transition: left 0.3s ease;
   }
   nav .nav-items.active{
     left: 0px;
@@ -130,7 +129,6 @@ nav .search-icon{
     right: 50px;
     opacity: 0;
     pointer-events: none;
-    transition: top 0.3s ease, opacity 0.1s ease;
   }
   nav form.active{
     top: 95px;
@@ -158,9 +156,7 @@ nav .search-icon{
     border-radius: 2px;
     min-width: calc(100% + 20px);
     z-index: -2;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+
   }
   nav .menu-icon{
     display: block;
@@ -176,13 +172,6 @@ nav .search-icon{
   nav .cancel-icon.show{
     display: block;
   }
-}
-.content{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  text-align: center;
-  transform: translate(-50%, -50%);
 }
 .content header{
   font-size: 30px;
@@ -216,12 +205,6 @@ nav .logo.space{
     margin: 0 10px;
     font-size: 16px;
   }
-}
-.content{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 .content header{
   font-size: 30px;

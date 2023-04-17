@@ -45,23 +45,21 @@
         cancelBtn.classList.add("show");
       }
 </script>
-    <div class ="row">
-        <div class="content">
-            <div class="drag-area">
-                <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                <span>OR</span>
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="row content"><br>
-                        <input type="file" name="document" id="document" required="required"><br>
-                        <button type="submit" class="btn-primary"> Upload</button> <br>
-                    </div>
-                </form>
-            </div>
+    <div class="content">
+        <div class="drag-area">
+            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+            <span>OR</span>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row content"><br>
+                    <input type="file" name="document" id="document" required="required"><br>
+                    <button type="submit" class="btn-primary"> Upload</button> <br>
+                </div>
+            </form>
         </div>
-            <div class ="row">
-                <iframe src="{% url 'attribute' %}"  style="width : 2000px; height : 1200px"></iframe>
-            </div>
+    </div>
+    <div class ="row" style="padding:50px">
+        <iframe src="{% url 'attribute' %}"  style="width : 2000px; height : 1200px"></iframe>
     </div>
 </div>
 {% endblock %}

@@ -846,3 +846,140 @@ def tab2(request):
                "corr_list": corr_list,"fff":fff, "type1": type1,"type_c":type_c,'b': b,'list2':list2}
 
     return render(request, 'tab2.html', context)
+
+
+def median(request):
+    global col, my_file, data,rows, columns, information
+    information = "columns :" + str(columns) + "," + "rows :" + str(rows)
+    b = []
+    for i in col:
+        b.append(data[i].isnull().sum())
+    context = {
+        'b': b,
+        'col': col,
+        'information': information, 'list2' : list2}
+    print(col)
+    # selected=[]
+    # for i in col :
+    #     selected.append(i)
+    # del_list = [x.split("_")[0] for x in selected if x.split("_")[-1] == "d"]
+    # replace_list = [x.split("_")[0] for x in selected if x.split("_")[-1] == "r"]
+
+    if request.method == "POST":
+        selected = request.POST.getlist('selected')
+        print(selected)
+        del_list = [x.split("@#$%")[0] for x in selected if x.split("@#$%")[-1] == "d"]
+        replace_list = [x.split("@#$%")[0] for x in selected if x.split("@#$%")[-1] == "r"]
+        del_list2 = [x.split("@#$%")[0] for x in selected if x.split("@#$%")[-1] == "c"]
+        print("del_list", del_list)
+        print("replace_list", replace_list)
+        print("del_list2", del_list2)
+        if (len(replace_list) > 0):
+            median = my_file[replace_list].median()
+            median = median.values.tolist()
+            print(median)
+            print(type(median))
+            for i, z in zip(replace_list, median):
+                my_file[i].fillna(z, inplace=True)
+        if (len(del_list) > 0):
+            my_file = my_file.drop(del_list, axis=1)
+
+        if(len(del_list2)>0):
+            my_file = my_file.dropna(subset=del_list2)
+            print("rows :", rows)
+    print("rows :", rows)
+    data = pd.DataFrame(data=my_file, index=None)
+    col = list(data.columns)
+
+    return render(request, "median.html", context)
+
+
+def evaluation(request):
+    global col, my_file, data,rows, columns, information
+    information = "columns :" + str(columns) + "," + "rows :" + str(rows)
+    b = []
+    for i in col:
+        b.append(data[i].isnull().sum())
+    context = {
+        'b': b,
+        'col': col,
+        'information': information, 'list2' : list2}
+    print(col)
+    # selected=[]
+    # for i in col :
+    #     selected.append(i)
+    # del_list = [x.split("_")[0] for x in selected if x.split("_")[-1] == "d"]
+    # replace_list = [x.split("_")[0] for x in selected if x.split("_")[-1] == "r"]
+
+    if request.method == "POST":
+        selected = request.POST.getlist('selected')
+        print(selected)
+        del_list = [x.split("@#$%")[0] for x in selected if x.split("@#$%")[-1] == "d"]
+        replace_list = [x.split("@#$%")[0] for x in selected if x.split("@#$%")[-1] == "r"]
+        del_list2 = [x.split("@#$%")[0] for x in selected if x.split("@#$%")[-1] == "c"]
+        print("del_list", del_list)
+        print("replace_list", replace_list)
+        print("del_list2", del_list2)
+        if (len(replace_list) > 0):
+            median = my_file[replace_list].median()
+            median = median.values.tolist()
+            print(median)
+            print(type(median))
+            for i, z in zip(replace_list, median):
+                my_file[i].fillna(z, inplace=True)
+        if (len(del_list) > 0):
+            my_file = my_file.drop(del_list, axis=1)
+
+        if(len(del_list2)>0):
+            my_file = my_file.dropna(subset=del_list2)
+            print("rows :", rows)
+    print("rows :", rows)
+    data = pd.DataFrame(data=my_file, index=None)
+    col = list(data.columns)
+
+    return render(request, "evaluation.html", context)
+
+def quality(request):
+    global col, my_file, data,rows, columns, information
+    information = "columns :" + str(columns) + "," + "rows :" + str(rows)
+    b = []
+    for i in col:
+        b.append(data[i].isnull().sum())
+    context = {
+        'b': b,
+        'col': col,
+        'information': information, 'list2' : list2}
+    print(col)
+    # selected=[]
+    # for i in col :
+    #     selected.append(i)
+    # del_list = [x.split("_")[0] for x in selected if x.split("_")[-1] == "d"]
+    # replace_list = [x.split("_")[0] for x in selected if x.split("_")[-1] == "r"]
+
+    if request.method == "POST":
+        selected = request.POST.getlist('selected')
+        print(selected)
+        del_list = [x.split("@#$%")[0] for x in selected if x.split("@#$%")[-1] == "d"]
+        replace_list = [x.split("@#$%")[0] for x in selected if x.split("@#$%")[-1] == "r"]
+        del_list2 = [x.split("@#$%")[0] for x in selected if x.split("@#$%")[-1] == "c"]
+        print("del_list", del_list)
+        print("replace_list", replace_list)
+        print("del_list2", del_list2)
+        if (len(replace_list) > 0):
+            median = my_file[replace_list].median()
+            median = median.values.tolist()
+            print(median)
+            print(type(median))
+            for i, z in zip(replace_list, median):
+                my_file[i].fillna(z, inplace=True)
+        if (len(del_list) > 0):
+            my_file = my_file.drop(del_list, axis=1)
+
+        if(len(del_list2)>0):
+            my_file = my_file.dropna(subset=del_list2)
+            print("rows :", rows)
+    print("rows :", rows)
+    data = pd.DataFrame(data=my_file, index=None)
+    col = list(data.columns)
+
+    return render(request, "quality.html", context)
