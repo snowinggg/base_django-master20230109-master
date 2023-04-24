@@ -907,7 +907,6 @@ def tab2(request):
     fff = fig.to_html()
 
     type1 =my_file.dtypes.values.tolist()
-    print(type1)
     type_c = ["int64", "float64", "bool", "object"]
 
 
@@ -916,8 +915,9 @@ def tab2(request):
     for i in range(numm) :
         list1=[col[i],b[i],type1[i]]
         list2.append(list1)
-    print(list2)
 
+    type_name = request.GET.get('{{ row }}')
+    print(type_name)
 
 
     if request.method == "POST":
@@ -925,6 +925,8 @@ def tab2(request):
         print(choice)
         choice2 = request.POST.getlist('choice2')
         print(choice2)
+        type_name = request.GET.get('type_name')
+        print(type_name)
 
         # 컬럼과 데이터 타입 변경하기
         for colss, dtype in zip(choice, choice2):
@@ -934,7 +936,7 @@ def tab2(request):
 
     context = {'col': col, 'products_list': products_list, 'describe_cols': describe_col,
                'describe_list': describe_list, 'list': list, 'page': page, 'information' : information,'describe_list': describe_list, "corr_cols": corr_col,
-               "corr_list": corr_list,"fff":fff, "type1": type1,"type_c":type_c,'b': b,'list2':list2}
+               "corr_list": corr_list,"fff":fff, "type1": type1,"type_c":type_c,'b': b,'list2':list2,}
 
     return render(request, 'tab2.html', context)
 

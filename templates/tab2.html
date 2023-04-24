@@ -57,7 +57,6 @@
         <th>name</th>
         <th>null num</th>
         <th>data type</th>
-        <th>변경할 type 결정</th>
         <th>변경할 type 선택</th>
       </tr>
       <tr>
@@ -66,38 +65,34 @@
         <td>{{ item }}</td>
         {% endfor %}
         <td>
-          <center><input id="selected5" type="checkbox" name="selected5" value="{{ check }}">{{ check }}</center>
-        </td>
-        <td>
-          <form method="get" action="" class="form" style="margin-left: 7%; margin-top: 5%;">
-            <select name="month" id="id_month">
+          <form method="POST" action="{% url 'tab2' %}" class="form"  style="text-align : center">
+            {% csrf_token %}
+            <select name="{{ row }}" id="{{ row }}" >
               <option value="0" selected>선택</option>
               <option value="int" >int64</option>
               <option value="float64">float64</option>
               <option value="object">object</option>
             </select>
           </form>
-
         </td>
       </tr>
 
       {% endfor %}
 
     </table>
-    <button type="button" class="btn btn-primary">적용</button>
+    <button type="button" id = "keyword" class="btn btn-primary">적용</button>
     <button type="button" class="btn btn-primary" onclick="window.open('{% url 'attribute' %}','window_name','width=1200,height=2000,location=no,status=no,scrollbars=yes');">확인</button>
   </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $( "select[name=month]" ).val( "{{ month_text }}" );
-        $('select[name=month]').change(function () {
-        console.log($('select[name=month]').val());
-        month = $('select[name=month]').val();
-        $('.form').submit();
+<script type="text/javascript">
+    $(keyword).ready\(function() {
+        $('select[name={{ row }}]').change(function () {
+        $("#{{ row }}").submit();
     });
 });
+
+
 </script>
 
 {% endblock %}
