@@ -68,10 +68,10 @@
           <form method="POST" action="{% url 'tab2' %}" class="form"  style="text-align : center">
             {% csrf_token %}
             <select name="{{ row }}" id="{{ row }}" >
-              <option value="0" selected>선택</option>
-              <option value="int" >int64</option>
-              <option value="float64">float64</option>
-              <option value="object">object</option>
+              <option value="0" name="0" selected>선택</option>
+              <option value="int" name="int" >int64</option>
+              <option value="float64" name="float64">float64</option>
+              <option value="object" name="object">object</option>
             </select>
           </form>
         </td>
@@ -85,14 +85,7 @@
   </div>
 </div>
 
-<script type="text/javascript">
-    $(keyword).ready\(function() {
-        $('select[name={{ row }}]').change(function () {
-        $("#{{ row }}").submit();
-    });
-});
 
 
-</script>
 
 {% endblock %}

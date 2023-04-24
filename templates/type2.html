@@ -1,0 +1,34 @@
+{% extends 'base_layout/base_site.html' %}
+{% block content %}
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+
+      <form action="" method="post">
+       <table>
+       <thead>
+        <th>컬럼</th>
+        <th>타입</th>
+        <th>타입변경</th>
+            {% csrf_token %}`
+      </thead>
+       <tbody>
+    {% for check in col  %}
+        <tr>
+            <td><input id="choice" type="checkbox" name="choice" value="{{ check }}">{{ check }}</td>
+                {%  for dodo2 in type1 %}
+                 <td>{{ dodo2 }}</td>
+                {%  endfor %}
+          </tr>
+      {%  endfor %}
+
+      {% csrf_token %}
+    {% for check2 in type_c %}
+        <tr><td><p><input id="choice2" type="checkbox" name="choice2" value="{{ check2 }}">{{ check2 }}</p></td></tr>
+                {%  endfor %}
+        </tbody>
+        </table>
+        <button id="submit">Submit</button>
+    </form>
