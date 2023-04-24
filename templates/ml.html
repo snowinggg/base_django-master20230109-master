@@ -57,20 +57,26 @@
         <div class="table-responsive" >
             <table class="table table-bordered" >
                 <tr>
-                    <th>name</th>
-                    <th>null num</th>
-                    <th>X변수</th>
-                    <th>Y변수</th>
-<th>Max Value</th>
-                    <th>Min Value</th>
+                    <th>type</th>
+                    <th>x변수</th>
+                    <th>y변수</th>
+                    {% for css in cs %}
+                <tr>
+                    {% for csss in css %}
+                    {% if forloop.counter0 == 0 %}
+                    <td><p>{{ csss }} </p></td>
+                    {% elif forloop.counter0 == 1 %}
+                    <td><p>{{ csss }} </p></td>
+                    {% elif forloop.counter0 == 2 %}
+                    <td><p><input id="{{csss}}" type="checkbox" name="x_data" value="{{ csss }}"> </p></td>
+                    {% elif forloop.counter0 == 3 %}
+                    <td><p><input id="{{csss}}" type="checkbox" name="y_data" value="{{ csss }}"> </p></td>
+
+                    {% endif %}
+                    {%  endfor %}
 
                 </tr>
-                <tr>
-                    {% for row in list3 %}
-                <tr>{% for item in row %}
-                    <td>{{ item }}</td>
-                    {% endfor %}    <td><input type="checkbox" value="{{ check }}@#$%d">{{ check }}</td>  <td><input type="checkbox" value="{{ check }}@#$%d">{{ check }}</td> <td></td><td></td>      </tr>
-                {% endfor %}
+                {%  endfor %}
             </table>
         </div>
     </div>
@@ -79,32 +85,32 @@
     <div class="col-lg-2"  align ="center">
         <br>
         <div style="border: 1px dotted; border-radius: 5px; padding: 10px;">
-                <label class="radio-inline">
-            <input type="radio" name="inlineRadioOptions"  value="option1"> Shuffle
-        </label>
-        <br>
-        <br>
-        trainset testset 비율 조정
-        <br>
-        <div class="slider">
-            <input type="range" min="0" max="100" value="70" oninput="rangeValue.innerText = this.value">
-            <p id="rangeValue">70%</p>
-        </div>
-        <label class="radio-inline">
-            <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> LinearRegression
-        </label>
-        <br>
-        <label class="radio-inline">
-            <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> KNeighborsClassifier
-        </label>
-        <br>
-        <label class="radio-inline">
-            <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> DBSCAN
-        </label>
-        <br>
-        <br>
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions"  value="option1"> Shuffle
+            </label>
+            <br>
+            <br>
+            trainset testset 비율 조정
+            <br>
+            <div class="slider">
+                <input type="range" min="0" max="100" value="70" oninput="rangeValue.innerText = this.value">
+                <p id="rangeValue">70%</p>
+            </div>
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> LinearRegression
+            </label>
+            <br>
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> KNeighborsClassifier
+            </label>
+            <br>
+            <label class="radio-inline">
+                <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> DBSCAN
+            </label>
+            <br>
+            <br>
 
-</div>
+        </div>
     </div>
 </div>
 

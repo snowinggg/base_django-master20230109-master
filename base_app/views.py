@@ -22,6 +22,10 @@ import pymysql
 import pymysql.cursors
 from itables import show
 from itables.sample_dfs import get_population
+from django.shortcuts import render, redirect
+from django.template import RequestContext
+from django.shortcuts import render
+
 
 
 attributeid = None
@@ -134,6 +138,7 @@ def mon(request):
             return render(request,"mon.html",context)
         else:
             messages.warning(request, ' File was not uploaded. Please use csv file extension !')
+
 
     return render(request, 'mon.html')
 
@@ -490,7 +495,34 @@ def Normalization(request):
                 print(my_file)
     return render(request, "standardScaler.html",context)
 
+def standard(request):
+    global my_file, col, products_list, rows, data
+    context ={"col": col, "list2":list2}
+    if request.method == "POST":
+        selected6 = request.POST.getlist('selected6')
+        print(selected6)
+        MinMaxScaler_list = [x.split("@#$%")[0] for x in selected6 if x.split("@#$%")[-1] == "a"]
+        standardScaler_list = [x.split("@#$%")[0] for x in selected6 if x.split("@#$%")[-1] == "w"]
+        print("MinMaxScaler_list", MinMaxScaler_list)
+        print("standardScaler_list", standardScaler_list)
+        # MinMaxcaler객체 생성
+        if (len(MinMaxScaler_list) > 0):
+            for i in MinMaxScaler_list:
+                min_scaler = MinMaxScaler()
+                minmax_data = min_scaler.fit_transform(my_file[[i]])
+                print(minmax_data)
+                my_file[i] = minmax_data
 
+                print(my_file)
+
+        if(len(standardScaler_list)>0):
+            for j in standardScaler_list:
+                std_scaler = StandardScaler()
+                std_data = std_scaler.fit_transform(my_file[[j]])
+                print(std_data)
+                my_file[i] = std_data
+                print(my_file)
+    return render(request, "standard.html",context)
 
 def outlier_iqr(data, column,num=0.25):
     # lower, upper 글로벌 변수 선언하기
@@ -769,10 +801,69 @@ def change(request):
     return render(request, 'change.html',context)
 
 def ml(request):
-    context = {
-        'b': b,
-        'col': col, 'list3' : list3}
-    return render(request, 'ml.html', context)
+
+    global my_file,col,products_list,rows,data,type1
+    type1 = my_file.dtypes.values.tolist()
+    if request.method == "POST":
+        x_data = request.POST.getlist('x_arr[]')  # x값  데이터
+        y_data = request.POST.getlist('y_arr[]')
+        train_test_split = int(request.POST.get('train_test_arr'))
+        model_name = request.POST.get("selectedValue")
+        print(type(train_test_split))
+
+        train_test_split *= 0.01
+
+        # y값  데이터
+        print("x_data :",  x_data)
+        print("y_data :", y_data)
+        print("train_test_split :", train_test_split)
+
+        print("model_name:", model_name)
+
+        X =data[x_data]
+        Y =data[y_data]
+        line_filtter = LinearRegression()
+        line_filtter.fit(X.values.reshape(-1, 1), Y)
+        X_predict = line_filtter.predict(X.values.reshape(-1, 1))
+
+        js_X = np.array(data[x_data].transpose()).tolist()
+        js_Y = np.array(data[y_data].transpose()).tolist()
+        js_predict=np.array(X_predict.transpose()).tolist()
+
+        print(X_predict)
+        print(type(X_predict))
+        print(X.values.shape)
+
+
+        js = np.array(data[x_data].values.tolist()).transpose().tolist()
+        ind = data.index.tolist()
+        js2 = np.array(data[y_data].values.tolist()).transpose().tolist()
+
+        response_data = {'x_data': x_data, 'y_data': y_data, 'ind': ind, 'js': js, "js2": js2, 'js_X': js_X, 'js_Y': js_Y, 'js_predict': js_predict}
+
+
+
+        return JsonResponse({'data': response_data})
+
+    else:
+        data_columns=data.columns
+        temp_li = {}
+        for idx, i in enumerate(data_columns):
+            temp_li[idx] = []
+            temp_li[idx].append(i)
+        for idx, i in enumerate(type1):
+            temp_li[idx].append(i)
+        for idx, i in enumerate(data_columns):
+            temp_li[idx].append(i)
+        for idx, i in enumerate(data_columns):
+            temp_li[idx].append(i)
+        for idx, i in enumerate(data_columns):
+            temp_li[idx].append(i)
+        data_list = list(temp_li.values())
+        cs = data_list
+
+        context = {"cs":cs}
+        return render(request, 'ml.html', context)
 
 def dl(request):
     context = {
@@ -983,3 +1074,5 @@ def quality(request):
     col = list(data.columns)
 
     return render(request, "quality.html", context)
+
+

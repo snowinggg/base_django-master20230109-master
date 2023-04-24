@@ -11,7 +11,7 @@
   <body style="overflow-x: hidden">
   <nav>
     <div class="logo">
-      type 변경
+      정보 특성 보기
     </div>
     <div class="nav-items">
       <li><a href="{% url 'info' %}">table 요약 정보</a></li>
@@ -52,35 +52,52 @@
       }
 </script>
   <div style = "padding : 30px">
-  <table class="table table-bordered" style="width : 50%" >
-    <tr>
-      <th>name</th>
-      <th>null num</th>
-      <th>data type</th>
-      <th>변경할 type 결정</th>
-      <th>변경할 type 선택</th>
-    </tr>
-    <tr>
-      {% for row in list2 %}
-    <tr>{% for item in row %}
-      <td>{{ item }}</td>
+    <table class="table table-bordered" style="width : 50%" >
+      <tr>
+        <th>name</th>
+        <th>null num</th>
+        <th>data type</th>
+        <th>변경할 type 결정</th>
+        <th>변경할 type 선택</th>
+      </tr>
+      <tr>
+        {% for row in list2 %}
+      <tr>{% for item in row %}
+        <td>{{ item }}</td>
+        {% endfor %}
+        <td>
+          <center><input id="selected5" type="checkbox" name="selected5" value="{{ check }}">{{ check }}</center>
+        </td>
+        <td>
+          <form method="get" action="" class="form" style="margin-left: 7%; margin-top: 5%;">
+            <select name="month" id="id_month">
+              <option value="0" selected>선택</option>
+              <option value="int" >int64</option>
+              <option value="float64">float64</option>
+              <option value="object">object</option>
+            </select>
+          </form>
+
+        </td>
+      </tr>
+
       {% endfor %}
-    <td>
-      <center><input id="selected5" type="checkbox" name="selected5" value="{{ check }}">{{ check }}</center>
-    </td>
-      <td><select name="language" >
-        <option value="none"selected>=== 선택 ===</option>
-        <option value="korean" >int64</option>
-        <option value="english">float64</option>
-        <option value="chinese">object</option>
-      </select></td>
-    </tr>
 
-    {% endfor %}
-
-  </table>
+    </table>
     <button type="button" class="btn btn-primary">적용</button>
-<button type="button" class="btn btn-primary" onclick="window.open('{% url 'attribute' %}','window_name','width=1200,height=2000,location=no,status=no,scrollbars=yes');">확인</button>
+    <button type="button" class="btn btn-primary" onclick="window.open('{% url 'attribute' %}','window_name','width=1200,height=2000,location=no,status=no,scrollbars=yes');">확인</button>
+  </div>
 </div>
-</div>
-  {% endblock %}
+
+<script>
+    $(document).ready(function() {
+        $( "select[name=month]" ).val( "{{ month_text }}" );
+        $('select[name=month]').change(function () {
+        console.log($('select[name=month]').val());
+        month = $('select[name=month]').val();
+        $('.form').submit();
+    });
+});
+</script>
+
+{% endblock %}

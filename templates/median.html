@@ -8,7 +8,7 @@
 
 <nav>
     <div class="logo">
-        딥러닝
+        전처리
     </div>
     <div class="nav-items">
         <li><a href="{% url 'delete' %}">컬럼 삭제하기</a></li>
@@ -39,7 +39,7 @@
             {% for row in list2 %}
         <tr>{% for item in row %}
             <td>{{ item }}</td>
-            {% endfor %}            <td><input type="checkbox" value="{{ check }}@#$%d">{{ check }}</td></tr>
+            {% endfor %}            <td><center><input type="checkbox" value="{{ check }}@#$%d">{{ check }}</center></td></tr>
         {% endfor %}
 
     </table>

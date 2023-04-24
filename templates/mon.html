@@ -3,23 +3,31 @@
 {% load static %}
 <head>
     <link rel="stylesheet" href="{% static 'builds/drag.css' %}">
-    <link rel="stylesheet" href="{% static 'builds/table.css' %}">
     <link rel="stylesheet" href="{% static '/builds/navbar.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-</head>
-<div class = "row">
-    <body style="overflow-x: hidden">
-    <nav>
-        <div class="logo">
-            불러오기
-        </div>
-        <div class="nav-items">
-            <li><a href="{% url 'mon' %}">파일 불러오기</a></li>
-            <li><a href="{% url 'tab1' %}">DB 불러오기</a></li>
-        </div>
-    </nav>
-    </body>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.min.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script>
+
     <script>
+    $(document).ready(function () {
+    $('#example').DataTable({"lengthMenu": [ 20, 50, 100 ]});
+});
+</script>
+</head>
+<body style="overflow-x: hidden">
+<nav class = "navbar-fixed-top">
+    <div class="logo">
+        불러오기
+    </div>
+    <div class="nav-items">
+        <li><a href="{% url 'mon' %}">파일 불러오기</a></li>
+        <li><a href="{% url 'tab1' %}">DB 불러오기</a></li>
+    </div>
+</nav>
+</body>
+<script>
       const menuBtn = document.querySelector(".menu-icon span");
       const searchBtn = document.querySelector(".search-icon");
       const cancelBtn = document.querySelector(".cancel-icon");
@@ -45,21 +53,49 @@
         cancelBtn.classList.add("show");
       }
 </script>
-    <div class="content">
-        <div class="drag-area">
-            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-            <span>OR</span>
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="row content"><br>
-                    <input type="file" name="document" id="document" required="required"><br>
-                    <button type="submit" class="btn-primary"> Upload</button> <br>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class ="row" style="padding:50px">
-        <iframe src="{% url 'attribute' %}"  style="width : 2000px; height : 1200px"></iframe>
+<div style = "padding : 100px">
+    <div class="content" style= "position:fixed; ">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row content" style ="overflow:hidden"><br>
+                <input type="file" name="document" id="document" required="required"><br>
+                <button type="submit" class="btn-primary"> Upload</button> <br>
+            </div>
+
+        </form>
+        <br>
+        <table id="example" class="display" style="width:100%; max-height: 1000px; overflow: scroll;">
+            <thead>
+            <tr>
+
+                {% for datase in cols %}
+
+                <th><B>{{datase}}</B></th>
+
+                {% endfor %}
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for oneline in products_list %}
+            <tr>
+
+                {% for onedata in oneline %}
+                <td>{{onedata}}</td>
+
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </tfoot>
+        </table>
     </div>
 </div>
+{% block javascripts %}
+<script src="{% static "/libs/bootstrap/bootstrap.js" %}"></script>
+<script src="{% static "/builds/custom.js" %}"></script>
+<!-- Bootstrap Colorpicker -->
+<script src="{% static "/libs/moment/min/moment.min.js" %}"></script>
+<script src="{% static "/libs/bootstrap-daterangepicker/daterangepicker.js" %}"></script>
+<script src="{% static '/libs/datetimepicker/bootstrap-datetimepicker.js' %}"></script>
+{% endblock %}
 {% endblock %}

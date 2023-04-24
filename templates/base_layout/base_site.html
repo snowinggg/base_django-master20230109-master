@@ -8,15 +8,15 @@
 
     {% block stylesheets %}
 
-        <link rel="stylesheet" href="{% static "/libs/bootstrap/bootstrap.css" %}"/>
-        <link rel="stylesheet" href="{% static "/libs/font-awesome/font-awesome.min.css" %}"/>
-        <link rel="stylesheet" href="{% static "/builds/custom.css" %}"/>
+        <link rel="stylesheet" href="{% static '/libs/bootstrap/bootstrap.css' %}"/>
+        <link rel="stylesheet" href="{% static '/libs/font-awesome/font-awesome.min.css' %}"/>
+        <link rel="stylesheet" href="{% static '/builds/custom.css' %}"/>
 
         <!--Bootstrap datatable-->
-        <link rel="stylesheet" href="{% static "/libs/datatables.net/js/jquery.dataTables.min.css" %}"/>
+        <link rel="stylesheet" href="{% static '/libs/datatables.net/js/jquery.dataTables.min.css' %}"/>
         <!---->
         <!--Bootstrap Daterangepicker-->
-        <link rel="stylesheet" href="{% static "/libs/bootstrap-daterangepicker/daterangepicker.css" %}"/>
+        <link rel="stylesheet" href="{% static '/libs/bootstrap-daterangepicker/daterangepicker.css' %}"/>
 
         <!---->
     {% endblock %}
@@ -41,12 +41,13 @@
     </div>
 </div>
 {% block javascripts %}
-    <script src="{% static "/libs/jquery/jquery.js" %}"></script>
-    <script src="{% static "/libs/bootstrap/bootstrap.js" %}"></script>
-    <script src="{% static "/builds/custom.js" %}"></script>
+
+    <script src="{% static '/libs/jquery/jquery.js' %}"></script>
+    <script src="{% static '/libs/bootstrap/bootstrap.js' %}"></script>
+    <script src="{% static '/builds/custom.js' %}"></script>
     <!-- Bootstrap Colorpicker -->
-    <script src="{% static "/libs/moment/min/moment.min.js" %}"></script>
-    <script src="{% static "/libs/bootstrap-daterangepicker/daterangepicker.js" %}"></script>
+    <script src="{% static '/libs/moment/min/moment.min.js' %}"></script>
+    <script src="{% static '/libs/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
     <script src="{% static '/libs/datetimepicker/bootstrap-datetimepicker.js' %}"></script>
 
 {% endblock %}

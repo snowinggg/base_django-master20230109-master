@@ -1,6 +1,7 @@
 {% extends 'base_layout/base_site.html' %}
 {% load static %}
 {% block content %}
+
 <head>
     <link rel="stylesheet" href="{% static '/builds/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'builds/table.css' %}">
@@ -8,9 +9,11 @@
 
 <nav>
     <div class="logo">
-        이상치 처리
+        전처리
     </div>
     <div class="nav-items">
+        <li><a href="{% url 'Normalization' %}">MinMaxScaler 정규화</a></li>
+        <li><a href="{% url 'standard' %}">StandardScaler 정규화</a></li>
     </div>
     <div class="search-icon">
         <span class="fas fa-search"></span>
@@ -19,7 +22,6 @@
         <span class="fas fa-times"></span>
     </div>
 </nav>
-
 
 <div class="table-responsive" style="width : 50%">
     <table class="table table-bordered">
@@ -33,28 +35,21 @@
             {% for row in list2 %}
         <tr>{% for item in row %}
             <td>{{ item }}</td>
-            {% endfor %}            <td><input id="selected7" type="checkbox" name="selected" + forloop.counter value="{{ check }}">{{ check }}</td></tr>
+            {% endfor %}            <td><input id="selected10" type="checkbox" name="selected6" value="{{ check }}">{{ check }}</td></tr>
         {% endfor %}
 
     </table>
 </div>
-
 <form action="" method="post">
-    {% csrf_token %}
-    {% for check in col %}
-    {%  endfor %}
-    <button type="submit">이상치 확인</button>
-    <td>이상치 총합 : {{ sum2 }}</td>
-
+    <div style="width:200px; height:150px;float:left;">
+        <h5><strong>StandardScaler 정규화</strong></h5>
+        {% for check in col %}
+        <p><input id="selected7" type="checkbox" name="selected6" value="{{ check }}@#$%w">{{ check }}</p>
+        {%  endfor %}
+        <button type="submit">컬럼 정규화</button>
+    </div>
 
 </form>
-<div class="container mt-4">
-    {{ chart|safe }}
-    {%  if chart %}
-    {#        <button type="submit">이상치 행 삭제</button>#}
-    <a href="{% url 'outlier_results' %}"
-       class="btn btn-sm btn-outline-secondary">이상치 행 삭제</a>
-    {% endif %}
-</div>
-
-{% endblock %}
+<button type="button" class="btn btn-primary">적용</button>
+    <button type="button" class="btn btn-primary" onclick="window.open('{% url 'attribute' %}','window_name','width=1200,height=2000,location=no,status=no,scrollbars=yes');">확인</button>
+{% endblock %}+

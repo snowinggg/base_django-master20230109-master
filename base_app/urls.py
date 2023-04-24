@@ -1,6 +1,11 @@
 from django.urls import path
 from . import views
+from django.conf.urls import (  handler500
+)
 
+
+
+handler500 = 'django.views.defaults.server_error'
 
 urlpatterns = [
     path('', views.main, name='main'),
@@ -39,5 +44,6 @@ urlpatterns = [
     path("tab2", views.tab2, name="tab2"),
     path("median", views.median, name="median"),
     path("quality", views.quality, name="quality"),
-    path("evaluation", views.evaluation, name="evaluation")
+    path("evaluation", views.evaluation, name="evaluation"),
+    path("standard", views.standard, name="standard")
 ]
